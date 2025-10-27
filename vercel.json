@@ -9,7 +9,5 @@
     { "src": "^/api/(.*)$", "dest": "/api/$1.js" },
     { "src": "^/.well-known/(.*)$", "dest": "/public/.well-known/$1" },
     { "src": "^(.*)$", "dest": "/public/index.html" }
-    { "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
   ]
 }
-
