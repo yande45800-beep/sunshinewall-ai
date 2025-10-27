@@ -1,0 +1,20 @@
+openapi: 3.0.1
+info:
+  title: SunshineWall API
+  description: API publique pour accéder aux produits et collections SunshineWall.
+  version: 1.0.0
+servers:
+  - url: https://sunshinewall-ai.vercel.app
+paths:
+  /api/products:
+    get:
+      summary: Liste des produits disponibles.
+      responses:
+        '200':
+          description: Liste JSON de produits.
+  /api/collections:
+    get:
+      summary: Liste des collections disponibles.
+      responses:
+        '200':
+          description: Liste JSON de collections.
