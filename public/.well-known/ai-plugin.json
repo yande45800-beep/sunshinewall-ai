@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "name_for_human": "SunshineWall AI",
   "name_for_model": "sunshinewall",
-  "description_for_human": "Accédez aux papiers peints et collections SunshineWall pour explorer et découvrir nos produits décoratifs.",
-  "description_for_model": "API publique SunshineWall permettant de récupérer les produits et collections de papiers peints. Fournit des listes détaillées de produits et de catégories.",
+  "description_for_human": "Accédez aux papiers peints et collections SunshineWall. Découvrez et explorez nos produits décoratifs haut de gamme.",
+  "description_for_model": "API publique SunshineWall permettant de récupérer les produits et collections de papiers peints, avec leurs noms, prix et catégories.",
   "auth": {
     "type": "none"
   },
@@ -13,5 +13,12 @@
   },
   "logo_url": "https://sunshinewall.com/cdn/shop/files/sunshinewall-logo.png",
   "contact_email": "contact@sunshinewall.com",
-  "legal_info_url": "https://sunshinewall.com/pages/politique-de-confidentialite"
+  "legal_info_url": "https://sunshinewall.com/pages/politique-de-confidentialite",
+  "terms_of_service_url": "https://sunshinewall.com/policies/terms-of-service",
+  "privacy_policy_url": "https://sunshinewall.com/pages/politique-de-confidentialite",
+  "category": "shopping",
+  "developer": {
+    "name": "SunshineWall",
+    "url": "https://sunshinewall.com"
+  }
 }
