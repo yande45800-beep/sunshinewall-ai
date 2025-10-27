@@ -5,16 +5,16 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://sunshinewall-ai.vercel.app
+  - url: "https://sunshinewall-ai.vercel.app"
 
 paths:
   /api/products:
     get:
-      summary: Liste des produits disponibles
+      summary: Liste des produits disponibles.
       operationId: getProducts
       responses:
         "200":
-          description: Liste JSON de produits
+          description: Liste JSON des produits.
           content:
             application/json:
               schema:
@@ -31,8 +31,19 @@ paths:
 
   /api/collections:
     get:
-      summary: Liste des collections disponibles
+      summary: Liste des collections disponibles.
       operationId: getCollections
       responses:
         "200":
-          description: Liste JSON de collections
+          description: Liste JSON des collections.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
