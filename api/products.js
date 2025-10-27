@@ -1,38 +1,38 @@
 export default async function handler(req, res) {
-  const limit = req.query?.limit || 20;
-  const endpoint = "https://sunshinewallkl.myshopify.com/api/2023-10/graphql.json";
-  const token = "24efc55d625f21341bc5dd932d056779"; // token Shopify
+  try {
+    const limit = req.query?.limit || 20;
+    const endpoint = "https://sunshinewallkl.myshopify.com/api/2023-10/graphql.json";
+    const token = "24efc55d625f21341bc5dd932d056779";
 
-  const gqlQuery = `
-    {
-      products(first: ${limit}) {
-        edges {
-          node {
-            id
-            title
-            handle
-            descriptionHtml
-            onlineStoreUrl
-            featuredImage { url altText }
-            images(first: 20) { edges { node { url altText } } }
-            variants(first: 20) {
-              edges {
-                node {
-                  id
-                  title
-                  sku
-                  availableForSale
-                  priceV2 { amount currencyCode }
+    const gqlQuery = `
+      {
+        products(first: ${limit}) {
+          edges {
+            node {
+              id
+              title
+              handle
+              descriptionHtml
+              onlineStoreUrl
+              featuredImage { url altText }
+              images(first: 20) { edges { node { url altText } } }
+              variants(first: 20) {
+                edges {
+                  node {
+                    id
+                    title
+                    sku
+                    availableForSale
+                    priceV2 { amount currencyCode }
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-  `;
+    `;
 
-  try {
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
@@ -43,9 +43,16 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    return res.status(200).json(data);
-  } catch (err) {
-    console.error("Shopify API error:", err);
-    return res.status(500).json({ error: err.message });
+
+    // ✅ Réponse standard
+    return res.status(200).json({
+      success: true,
+      count: data?.data?.products?.edges?.length || 0,
+      data
+    });
+
+  } catch (error) {
+    console.error("❌ Shopify API error:", error);
+    return res.status(500).json({ success: false, error: error.message });
   }
 }
