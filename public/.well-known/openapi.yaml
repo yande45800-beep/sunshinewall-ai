@@ -4,7 +4,7 @@ info:
   description: API publique pour accéder aux produits et collections SunshineWall.
   version: 1.0.0
 servers:
-  - url: https://sunshinewall-ai.vercel.app
+  - url: "https://sunshinewall-ai.vercel.app"
 paths:
   /api/products:
     get:
@@ -26,8 +26,6 @@ paths:
                       type: string
                     price:
                       type: string
-                    image:
-                      type: string
   /api/collections:
     get:
       summary: Liste des collections disponibles.
@@ -35,16 +33,3 @@ paths:
       responses:
         "200":
           description: Liste JSON de collections.
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    title:
-                      type: string
-                    description:
-                      type: string
