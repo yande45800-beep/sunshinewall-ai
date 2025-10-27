@@ -1,5 +1,7 @@
+// api/products.js
 export default async function handler(req, res) {
   const limit = req.query?.limit || 20;
+
   const endpoint = "https://sunshinewallkl.myshopify.com/api/2023-10/graphql.json";
   const token = "24efc55d625f21341bc5dd932d056779";
 
@@ -12,10 +14,16 @@ export default async function handler(req, res) {
             title
             handle
             descriptionHtml
+            onlineStoreUrl
             featuredImage { url altText }
-            variants(first: 5) {
+            images(first: 20) { edges { node { url altText } } }
+            variants(first: 20) {
               edges {
                 node {
+                  id
+                  title
+                  sku
+                  availableForSale
                   priceV2 { amount currencyCode }
                 }
               }
@@ -37,8 +45,9 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    res.status(200).json(data);
+    return res.status(200).json(data);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Shopify API error:", err);
+    return res.status(500).json({ error: err.message });
   }
 }
