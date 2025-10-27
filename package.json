@@ -1,9 +1,9 @@
 {
   "name": "sunshinewall-ai",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "@vercel/node": "^3.0.0"
   }
 }
- 
