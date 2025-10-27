@@ -1,7 +1,7 @@
 export async function handler(event) {
   const limit = event.queryStringParameters?.limit || 20;
-  const endpoint = "https://sunshinewallk.myshopify.com/api/2023-10/graphql.json";
-  const token = "24efc55d625f21341bc5dd932d056779"; // remplacez par votre Storefront token
+  const endpoint = "https://sunshinewallkl.myshopify.com/api/2023-10/graphql.json";
+  const token = "24efc55d625f21341bc5dd932d056779"; // Storefront Access Token
 
   const gqlQuery = `
     {
@@ -13,16 +13,27 @@ export async function handler(event) {
             handle
             descriptionHtml
             onlineStoreUrl
-            featuredImage { url altText }
-            images(first: 20) { edges { node { url altText } } }
-            variants(first: 20) {
+            featuredImage {
+              url
+              altText
+            }
+            images(first: 10) {
+              edges {
+                node {
+                  url
+                  altText
+                }
+              }
+            }
+            variants(first: 10) {
               edges {
                 node {
                   id
                   title
-                  sku
-                  availableForSale
-                  priceV2 { amount currencyCode }
+                  priceV2 {
+                    amount
+                    currencyCode
+                  }
                 }
               }
             }
@@ -43,12 +54,22 @@ export async function handler(event) {
     });
 
     const data = await response.json();
+
+    if (!response.ok) {
+      console.error("Shopify API Error:", data);
+      throw new Error(`Shopify returned ${response.status}: ${JSON.stringify(data)}`);
+    }
+
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data, null, 2)
     };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    console.error("Error in SunshineWall products API:", err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message })
+    };
   }
 }
