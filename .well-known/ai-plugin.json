@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "SunshineWall Store",
+  "name_for_model": "sunshinewall",
+  "description_for_human": "Explorez les papiers peints SunshineWall, leurs collections et leurs caractéristiques.",
+  "description_for_model": "Fournit les données de produits et collections SunshineWall issues de Shopify.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://sunshinewall-ai.vercel.app/openapi.yaml"
+  },
+  "logo_url": "https://sunshinewall.com/cdn/shop/files/sunshinewall_logo.png",
+  "contact_email": "contact@sunshinewall.com",
+  "legal_info_url": "https://sunshinewall.com/pages/mentions-legales"
+}
