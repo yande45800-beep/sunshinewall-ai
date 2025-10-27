@@ -1,6 +1,6 @@
-export async function handler() {
-  const endpoint = "https://sunshinewallk.myshopify.com/api/2023-10/graphql.json";
-  const token = "24efc55d625f21341bc5dd932d056779"; // remplacez par votre Storefront token
+export default async function handler(req, res) {
+  const endpoint = "https://sunshinewallkl.myshopify.com/api/2023-10/graphql.json";
+  const token = "24efc55d625f21341bc5dd932d056779";
 
   const gqlQuery = `
     {
@@ -10,19 +10,7 @@ export async function handler() {
             id
             title
             handle
-            descriptionHtml
             image { url altText }
-            products(first: 20) {
-              edges {
-                node {
-                  id
-                  title
-                  handle
-                  descriptionHtml
-                  featuredImage { url altText }
-                }
-              }
-            }
           }
         }
       }
@@ -40,12 +28,9 @@ export async function handler() {
     });
 
     const data = await response.json();
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data, null, 2)
-    };
+    return res.status(200).json(data);
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
+    console.error("Shopify API error:", err);
+    return res.status(500).json({ error: err.message });
   }
 }
