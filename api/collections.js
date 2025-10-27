@@ -1,3 +1,4 @@
+// api/collections.js
 export default async function handler(req, res) {
   try {
     const endpoint = "https://sunshinewallkl.myshopify.com/api/2023-10/graphql.json";
@@ -15,9 +16,9 @@ export default async function handler(req, res) {
               products(first: 10) {
                 edges {
                   node {
+                    id
                     title
                     handle
-                    featuredImage { url altText }
                   }
                 }
               }
